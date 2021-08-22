@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import { Route } from "react-router-dom";
+import SignUp from './components/Signup';
+import Login from './components/Login';
+import { Layout } from 'antd';
+import PrivateRoute from './components/PrivateRoute';
+import Category from "./components/Categories";
+import Records from "./components/Records";
+import AppHeader from "./components/AppHeader";
+import Logout from "./components/Logout";
+
+const { Content, Footer } = Layout;
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Layout>
+      <AppHeader />
+      <Content className="site-layout" style={{ padding: '50px', marginTop: 64 }}>
+
+        <Route path="/register" component={SignUp} />
+        <Route path="/login" component={Login} />
+        <PrivateRoute path="/categories" component={Category} />
+        <PrivateRoute path="/records" component={Records} />
+        <Route path="/logout" component={Logout} />
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>Expense Tracker</Footer>
+    </Layout>
+
   );
 }
 
